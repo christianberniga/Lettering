@@ -1,0 +1,126 @@
+
+\documentclass{memoir}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+\usepackage{color,soul}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{subfig}
+\usepackage{xcolor}
+\usepackage[tikz]{bclogo}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{lipsum}
+\usepackage[many]{tcolorbox}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx} 
+\usepackage{kpfonts}
+\usepackage{color,soul}
+\usepackage{epigraph} 
+\newtcolorbox{fancyquotes}{%
+        enhanced jigsaw, 
+        breakable,      % allow page breaks
+        frame hidden,   % hide the default frame
+        left=2cm,       % left margin
+        right=2cm,      % right margin
+        overlay={%
+            \node [scale=8,
+                text=black,
+                inner sep=2pt,] at ([xshift=-1cm,yshift=-1cm]frame.north west){``}; 
+            \node [scale=8,
+                text=black,
+                inner sep=0pt,] at ([xshift=1cm]frame.south east){''};  
+                },
+            % paragraph skips obeyed within tcolorbox
+                    parbox=false,
+    }\setSingleSpace{1.1}
+\SingleSpacing
+\usepackage{xcolor,calc, blindtext}
+\usepackage{sectsty}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\geometry{a4paper, top=2cm, bottom=2cm, left=3.5cm, right=3.5cm,  heightrounded, bindingoffset=5mm}
+\titleformat{\subsection}  % which section command to format
+  {\fontsize{14}{14}\bfseries} % format for whole line
+  {\thesection} % how to show number
+  {1em} % space between number and text
+  {} % formatting for just the text
+  [] % formatting for after the text
+\definecolor{chaptercolor}{gray}{0.9}
+\titleformat{\section}  % which section command to format
+  {\fontsize{16}{16}\bfseries} % format for whole line
+  {\thesection} % how to show number
+  {1em} % space between number and text
+  {} % formatting for just the text
+  [\hline] % formatting for after the text
+\definecolor{chaptercolor}{gray}{0.9}
+\definecolor{bgblue}{RGB}{245,243,253}
+\definecolor{ttblue}{RGB}{91,194,224}
+\mdfdefinestyle{mystyle}{%
+  rightline=true,
+  innerleftmargin=10,
+  innerrightmargin=10,
+  outerlinewidth=3pt,
+  topline=false,
+  rightline=true,
+  bottomline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep
+}
+% helper macros
+\newcommand\numlifter[1]{\raisebox{-2cm}[0pt][0pt]{\smash{#1}}}
+\newcommand\numindent{\kern37pt}
+\newlength\chaptertitleboxheight
+\makechapterstyle{hansen}{
+  \renewcommand\printchaptername{\raggedleft}
+  \renewcommand\printchapternum{%
+    \begingroup%
+    \leavevmode%
+    \chapnumfont%
+    \strut%
+    \numlifter{\thechapter}%
+    \numindent%
+\endgroup%
+}
+  \renewcommand*{\printchapternonum}{%
+    \vphantom{\begingroup%
+      \leavevmode%
+      \chapnumfont%
+      \numlifter{\vphantom{9}}%
+      \numindent%
+      \endgroup}
+    \afterchapternum}
+  \setlength\midchapskip{0pt}
+  \setlength\beforechapskip{0.5\baselineskip}
+  \setlength{\afterchapskip}{3\baselineskip}
+  \renewcommand\chapnumfont{%
+    \fontsize{4cm}{0cm}%
+    \bfseries%
+    \sffamily%
+    \color{chaptercolor}%
+  }
+  \renewcommand\chaptitlefont{%
+    \normalfont%
+    \huge%
+    \bfseries%
+    \raggedleft%
+  }%
+  \settototalheight\chaptertitleboxheight{%
+    \parbox{\textwidth}{\chaptitlefont \strut bg\\bg\strut}}
+  \renewcommand\printchaptertitle[1]{%
+    \parbox[t][\chaptertitleboxheight][t]{\textwidth}{%
+      %\microtypesetup{protrusion=false}% add this if you use microtype
+      \chaptitlefont\strut ##1\strut}%
+}}
+
+\chapterstyle{hansen}
+\aliaspagestyle{chapter}{empty} % just to save some space
+\begin{document}
+\tableofcontents
+\include{lezione_1-introduzione al corso/lezione1}
+\include{lezione_2 - correzioni ottiche/lezione2}
+\include{lezione_3/lezione3}
+\include{lzione_4/lezione4}
+\end{document}
